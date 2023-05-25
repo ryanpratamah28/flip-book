@@ -20,13 +20,14 @@ class ProfileAdminController extends Controller
             'required' => 'Please fill in the :attribute field',   
             'min' => 'Attribute must be at least :min characters long',
             'max' => 'Attributes must be filled with a maximum of :max characters',
-            'exist' => 'The selected :attribute is invalid',
+            'exists' => 'The selected :attribute is invalid',
         ];
 
         $request->validate([
-            'nama' => ['required', 'min:8', 'max:20'],
-            'email' => ['required' ], 
-            'bio' => [ 'required' ],
+            'username' => ['required', 'min: 5', 'max:255', 'unique: users, username', 'alpha_dash'],
+            'nama' => ['required', 'min:3'],
+            'email' => ['required', 'exists:users, email'], 
+            'bio' => ['required'],
         ], $message);
 
         // Change Images 
@@ -51,6 +52,7 @@ class ProfileAdminController extends Controller
         // Update user profile 
         
         auth()->user()->update([
+            'username' => $request->username,
             'nama' => $request->nama,
             'email' => $request->email,
             'bio' => $request->bio, 

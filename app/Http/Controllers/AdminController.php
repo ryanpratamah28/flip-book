@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
 
 class AdminController extends Controller
 {
@@ -41,16 +42,20 @@ class AdminController extends Controller
             'required' => 'Please fill in the :attribute column',   
             'min' => 'Attribute must be at least :min characters long',
             'max' => 'Attributes must be filled with a maximum of :max characters',
+            'mixedCase' => 'The password must contain at least one uppercase and one lowercase letter',
+            'numbers' => 'The password must contain at least one number',
         ];
 
         $request -> validate([
-            'nama' => 'required|min:5|max:20',
-            'email' => 'required|unique:users,email', 
-            'bio' => 'required',
-            'password' => 'required|min:8',
+            'username' => ['required', 'min: 5', 'max:255', 'unique: users, username', 'alpha_dash'],
+            'nama' => ['required', 'min:3'],
+            'email' => ['required', 'exists:users, email'], 
+            'bio' => ['required'],
+            'password' => ['required', Password::min(8)->mixedCase()->numbers()],
         ], $message );
 
         User::create([
+            'username' => $request->username,
             'nama' => $request -> nama,
             'email' => $request -> email,
             'bio' => $request->bio,
@@ -67,12 +72,15 @@ class AdminController extends Controller
             'required' => 'Please fill in the :attribute column',   
             'min' => 'Attribute must be at least :min characters long',
             'max' => 'Attributes must be filled with a maximum of :max characters',
+            'mixedCase' => 'The password must contain at least one uppercase and one lowercase letter',
+            'numbers' => 'The password must contain at least one number',
         ];
 
         $request->validate([
-            'nama' => 'required|min:5|max:20',
-            'email' => 'required|exists:users,email',
-            'password' => 'required|min:8',
+            'username' => ['required', 'min: 5', 'max:255', 'unique: users, username', 'alpha_dash'],
+            'nama' => ['required', 'min:3'],
+            'email' => ['required', 'exists:users, email'],
+            'password' => ['required', Password::min(8)->mixedCase()->numbers()],
         ], $message);
 
         $admin = $request->only('nama', 'email', 'password');

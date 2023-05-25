@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 
 class ChangePasswordController extends Controller
@@ -19,12 +20,12 @@ class ChangePasswordController extends Controller
             'required' => 'Please fill in the :attribute field',   
             'min' => 'Attribute must be at least :min characters long',
             'max' => 'Attributes must be filled with a maximum of :max characters',
-            'exist' => 'The selected :attribute is invalid',
+            'exists' => 'The selected :attribute is invalid',
         ];
 
         $request->validate([
             'current_password' => ['required'],
-            'password' => ['required', 'min: 8', 'confirmed'],
+            'password' => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()],
         ], $message);
 
         // Change password
