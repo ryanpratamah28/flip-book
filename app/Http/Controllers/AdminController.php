@@ -47,9 +47,9 @@ class AdminController extends Controller
         ];
 
         $request -> validate([
-            'username' => ['required', 'min: 5', 'max:255', 'unique: users, username', 'alpha_dash'],
+            'username' => ['required', 'min: 5', 'max:255', 'unique:users,username', 'alpha_dash'],
             'nama' => ['required', 'min:3'],
-            'email' => ['required', 'exists:users, email'], 
+            'email' => ['required', 'unique:users,email'], 
             'bio' => ['required'],
             'password' => ['required', Password::min(8)->mixedCase()->numbers()],
         ], $message );
@@ -77,9 +77,9 @@ class AdminController extends Controller
         ];
 
         $request->validate([
-            'username' => ['required', 'min: 5', 'max:255', 'unique: users, username', 'alpha_dash'],
+            'username' => ['required', 'min: 5', 'max:255', 'alpha_dash'],
             'nama' => ['required', 'min:3'],
-            'email' => ['required', 'exists:users, email'],
+            'email' => ['required'],
             'password' => ['required', Password::min(8)->mixedCase()->numbers()],
         ], $message);
 

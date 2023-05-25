@@ -6,7 +6,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-4">
-                <h5 class="card-title fw-semibold mb-4">Admin Information</h5>
+                <h5 class="card-title fw-semibold mb-4">Profile Admin Information</h5>
                 <div class="card">
                     @if(is_null(auth()->user()->image_profile))
                         <img src="{{asset('images/profile/user-1.jpg')}}" class="card-img-top" alt="..." style="width: 100%;">
@@ -14,14 +14,16 @@
                         <img src="{{asset('images/profile/'. auth()->user()->image_profile)}}" class="card-img-top" alt="..." style="width: 100%;">
                     @endif
                     <div class="card-body">
-                        <h5 class="card-title">{{ old('nama', Auth::user()->nama)}}</h5>
+                        <h5 class="card-title mb-0">{{ old('bio', Auth::user()->nama)}}</h5>
+                        <p class="card-text"><span>@</span>{{ old('bio', Auth::user()->username)}}</p>
                         <p class="card-text">{{ old('bio', Auth::user()->bio)}}</p>
+
                     </div>
                 </div>
             </div>
 
             <div class="col-md-8">
-                <h5 class="card-title fw-semibold mb-4">Profile Information</h5>
+                <h5 class="card-title fw-semibold mb-4">Change Profile Information</h5>
                 <div class="card">
                     <div class="card-body">
                         <form method="POST" action="{{route('profile.update')}}" enctype="multipart/form-data">
@@ -31,6 +33,23 @@
                             @if(session()->has('success'))
                             <div class="text-success mb-4">{{ session()->get('sucesss')}} </div>
                             @endif
+
+                            <div class="mb-4 row">
+                                <label for="staticEmail" class="col-sm-3 col-form-label">Username</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" name="username"
+                                        value="{{ old('username', Auth::user()->username)}}">
+                                </div>
+                                @error('username')
+                                <div class="col-sm-3">
+                                    <label class="col-sm-3 col-form-label"></label>
+                                </div>
+
+                                <div class="col-sm-9">
+                                    <div class="form-text text-danger">{{ $message }}</div>
+                                </div>
+                                @enderror
+                            </div>
 
                             <div class="mb-4 row">
                                 <label for="staticEmail" class="col-sm-3 col-form-label">Name</label>
