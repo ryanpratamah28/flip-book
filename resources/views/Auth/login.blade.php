@@ -11,6 +11,13 @@
             <form method="POST" action="{{route('login.auth')}}">
                 @csrf
                 <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username">
+                    @error('username')
+                    <div class="form-text text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Name</label>
                     <input type="text" class="form-control" name="nama">
                     @error('nama')
@@ -26,8 +33,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password"
-                        id="password">
+                    <input type="password" class="form-control" name="password" id="password">
                     @error('password')
                     <div class="form-text text-danger">{{ $message }}</div>
                     @enderror
