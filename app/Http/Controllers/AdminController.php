@@ -46,12 +46,14 @@ class AdminController extends Controller
         $request -> validate([
             'nama' => 'required|min:5|max:20',
             'email' => 'required|unique:users,email', 
+            'bio' => 'required',
             'password' => 'required|min:8',
         ], $message );
 
         User::create([
             'nama' => $request -> nama,
             'email' => $request -> email,
+            'bio' => $request->bio,
             'password' => Hash::make($request->password),
             'role' => 'admin',
         ]);
@@ -63,12 +65,14 @@ class AdminController extends Controller
     {   
         $message = [
             'required' => 'Please fill in the :attribute column',   
+            'min' => 'Attribute must be at least :min characters long',
+            'max' => 'Attributes must be filled with a maximum of :max characters',
         ];
 
         $request->validate([
-            'nama' => 'required',
+            'nama' => 'required|min:5|max:20',
             'email' => 'required|exists:users,email',
-            'password' => 'required',
+            'password' => 'required|min:8',
         ], $message);
 
         $admin = $request->only('nama', 'email', 'password');
@@ -89,29 +93,6 @@ class AdminController extends Controller
     public function error()
     {
         return view('Layout.error');
-    }
-
-    public function editAccount($id)
-    {   
-        $account = User::where('id', $id)->first();
-        return view('Admin.edit_account', compact('account'));
-    }
-
-    public function updateAccount(Request $request, $id)
-    {
-        $request->validate([
-            'nama' => 'required',
-            'email' => 'required', 
-            'password' => 'required',
-        ]);
-
-        User::where('id', $id)->update([
-            'nama' => $request->nama,
-            'email' => $request->email,
-            'password' => $request->password,
-        ]);
-
-        return redirect('/dashboard/admin/account')->with('success', 'Akun berhasil diperbarui');
     }
 
     public function deleteAccount($id)

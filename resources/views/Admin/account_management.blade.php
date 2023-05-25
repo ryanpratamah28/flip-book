@@ -24,6 +24,13 @@
                   @enderror
                 </div>
                 <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Bio</label>
+                  <textarea type="text" class="form-control" name="bio"></textarea>
+                  @error('bio')
+                    <div class="form-text text-danger">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="mb-3">
                   <label class="form-label">Password</label>
                   <input type="password" class="form-control" name="password" id="password">
                   @error('password')
@@ -60,7 +67,10 @@
                         <h6 class="fw-semibold mb-0">Email</h6>
                       </th>
                       <th class="border-bottom-0">
-                        <h6 class="fw-semibold mb-0">Action</h6>
+                        <h6 class="fw-semibold mb-0">Bio</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0 text-center">Action</h6>
                       </th>
                     </tr>
                   </thead>
@@ -75,13 +85,14 @@
                         <p class="mb-0 fw-normal">{{ $account['email'] }}</p>
                       </td>
                       <td class="border-bottom-0">
+                        <p class="mb-0 fw-normal">{{ $account['bio'] }}</p>
+                      </td>
+                      <td class="border-bottom-0">
                         <form method="POST" action="{{ route('delete.account', $account['id']) }}">
                           @csrf
                           @method('DELETE')
 
-                          <div class="d-flex align-items-center gap-2">
-                            <a href="{{ route('edit.account', $account['id']) }}" class="ti ti-pencil fs-6" style="border: none; background-color:transparent;color:green;"></a>
-                            <span> | </span>
+                          <div class="d-flex align-items-center justify-content-center gap-2">
                             <button type="submit" class="ti ti-trash fs-6" style="border: none; background-color:transparent;color:red;"></button>
                           </div>
                         </form>

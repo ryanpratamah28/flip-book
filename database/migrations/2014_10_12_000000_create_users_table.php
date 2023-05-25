@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('email')->unique();
+            $table->string('bio');
             $table->string('password');
             $table->enum('role', ['admin', 'user'])->default('admin');
             $table->string('image_profile')->nullable();
