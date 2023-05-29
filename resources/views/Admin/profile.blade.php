@@ -30,19 +30,15 @@
                             @csrf
                             @method('PUT')
 
-                            @if(session()->has('success'))
-                            <div class="text-success mb-4">{{ session()->get('sucesss')}} </div>
-                            @endif
-
                             <div class="mb-4 row">
-                                <label for="staticEmail" class="col-sm-3 col-form-label">Username</label>
+                                <label for="username" class="col-sm-3 col-form-label">Username</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="username"
                                         value="{{ old('username', Auth::user()->username)}}">
                                 </div>
                                 @error('username')
                                 <div class="col-sm-3">
-                                    <label class="col-sm-3 col-form-label"></label>
+                                    <label class="col-sm-3 col-form-label"></label> 
                                 </div>
 
                                 <div class="col-sm-9">
@@ -52,7 +48,7 @@
                             </div>
 
                             <div class="mb-4 row">
-                                <label for="staticEmail" class="col-sm-3 col-form-label">Name</label>
+                                <label for="name" class="col-sm-3 col-form-label">Name</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" name="nama"
                                         value="{{ old('nama', Auth::user()->nama)}}">
@@ -69,7 +65,7 @@
                             </div>
 
                             <div class="mb-4 row">
-                                <label for="staticEmail" class="col-sm-3 col-form-label">Email</label>
+                                <label for="email" class="col-sm-3 col-form-label">Email</label>
                                 <div class="col-sm-9">
                                     <input type="email" class="form-control" name="email"
                                         value="{{ old('email', Auth::user()->email)}}">
@@ -86,7 +82,7 @@
                             </div>
 
                             <div class="mb-4 row">
-                                <label for="staticEmail" class="col-sm-3 col-form-label">Bio</label>
+                                <label for="bio" class="col-sm-3 col-form-label">Bio</label>
                                 <div class="col-sm-9">
                                     <textarea type="text" class="form-control"
                                         name="bio">{{ old('bio', Auth::user()->bio)}}</textarea>

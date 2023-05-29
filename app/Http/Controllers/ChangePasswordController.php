@@ -33,13 +33,13 @@ class ChangePasswordController extends Controller
         if (Hash::check($request->current_password, auth()->user()->password))
         {
             auth()->user()->update(['password' => Hash::make($request->password)]);
-            return back()->With('message', 'Your password has been updated');
+            return back()->with('passwordUpdated', 'Your password has been updated');
         }
  
         throw ValidationException::withMessages([
             'current_password' => 'Your current password does not match with our record',
         ]);
  
-        return back()->with('success', 'Your profile has been updated');
+        return redirect()->back()->with('passwordUpdated', 'Your password has been updated');
     }
 }

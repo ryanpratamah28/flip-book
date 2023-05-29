@@ -63,7 +63,7 @@ class AdminController extends Controller
             'role' => 'admin',
         ]);
         
-        return redirect('/dashboard/admin/account')->with('success', 'Berhasil menambahkan akun admin');
+        return redirect('/dashboard/admin/account')->with('success', 'Successfully added admin account');
     }
 
     public function loginAuth(Request $request)
@@ -88,7 +88,7 @@ class AdminController extends Controller
         if(Auth::attempt($admin)) {
             return redirect()->route('dashboardAdmin');
         }else{
-            return redirect()->back()->with('error', 'Gagal login, silahkan cek dan coba lagi!');
+            return redirect()->back()->with('error', 'Login failed, please check and try again!');
         }
     }
 
@@ -97,15 +97,10 @@ class AdminController extends Controller
         Auth::logout();
         return redirect('/');
     }
-
-    public function error()
-    {
-        return view('Layout.error');
-    }
-
+    
     public function deleteAccount($id)
     {
         User::where('id', '=', $id)->delete();
-        return redirect()->back()->with('deleted', 'Akun berhasil dihapus');
+        return redirect()->back()->with('deleted', 'Account deleted successfully');
     }
 }

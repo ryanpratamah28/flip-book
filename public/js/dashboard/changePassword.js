@@ -1,5 +1,5 @@
 $(".toggle-password").click(function () {
-    $(this).toggleClass("ti ti-eye-off");
+    $(this).toggleClass("fa-sharp fa-solid fa-eye-low-vision");
 
     var input = $($(this).attr("toggle"));
 

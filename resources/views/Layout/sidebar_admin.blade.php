@@ -7,6 +7,8 @@
     <title>Dashboard Admin</title>
     <link rel="shortcut icon" type="image/png" href="{{ asset('/images/logos/favicon.png') }}" />
     <link rel="stylesheet" href="{{ asset('/css/dashboard/styles.min.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -140,16 +142,78 @@
 
         </div>
     </div>
+
     <script src="{{ asset('/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('/js/dashboard/sidebarmenu.js') }} "></script>
 
     <script src="{{ asset('/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('/libs/simplebar/dist/simplebar.js') }} "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="{{ asset('/js/dashboard/app.min.js') }} "></script>
     <script src="{{ asset('/js/dashboard/dashboard.js') }}"></script>
     <script src="{{ asset('/js/dashboard/account.js')}}"></script>
-    <script src="{{ asset('/js/dashboard/profile.js')}}"></script>
+    <script src="{{ asset('/js/dashboard/changePassword.js')}}"></script>
+
+    @if (Session::has('success'))
+        <script>
+            toastr.options = {
+                "progressBar" : true,
+                "closeButton" : true,
+                "positionClass": "toast-bottom-right",
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+            }
+
+            toastr.success("{{ session()->get('success')}}");
+        </script>
+    @endif
+
+    @if (Session::has('passwordUpdated'))
+        <script>
+            toastr.options = {
+                "progressBar" : true,
+                "closeButton" : true,
+                "positionClass": "toast-bottom-right",
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+            }
+            toastr.success("{{ session()->get('passwordUpdated')}}");
+        </script>
+    @endif
+
+    @if (Session::has('deleted'))
+    <script>
+        toastr.options = {
+            "progressBar" : true,
+            "closeButton" : true,
+            "positionClass": "toast-bottom-right",
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+        }
+
+        toastr.error("{{ session()->get('deleted')}}");
+    </script>
+    @endif
+
+    @if (Session::has('error'))
+    <script>
+        toastr.options = {
+            "progressBar" : true,
+            "closeButton" : true,
+            "positionClass": "toast-bottom-right",
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+        }
+
+        toastr.error("{{ session()->get('error')}}");
+    </script>
+    @endif
+
     @endif
 </body>
 

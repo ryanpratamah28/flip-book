@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileAdminController extends Controller
 {
@@ -23,11 +24,11 @@ class ProfileAdminController extends Controller
         ];
 
         $request->validate([
-            'username' => ['required', 'min: 5', 'max:255', 'unique: users, username', 'alpha_dash'],
+            'username' => ['required', 'min: 5', 'max:255', 'alpha_dash'],
             'nama' => ['required', 'min:3'],
-            'email' => ['required', 'unique:users, email'], 
+            'email' => ['required'], 
             'bio' => ['required'],
-        ], $message);
+        ], $message); 
 
         // Change Images 
 

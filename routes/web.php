@@ -53,5 +53,3 @@ Route::middleware('isLogin')->prefix('/dashboard/admin')->group(function () {
 
 // Logout 
 Route::get('/logout', [AdminController::class, 'logout'])->name('logout');
-Route::get('/error', [AdminController::class, 'error'])->name('error');
-Route::get('/errorVerif', [AdminController::class, 'errorVerif'])->name('error.verif');

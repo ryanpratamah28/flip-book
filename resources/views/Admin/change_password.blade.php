@@ -12,15 +12,11 @@
             @csrf
             @method('PUT')
 
-            @if(session()->has('success'))
-                <div class="text-success mb-3">{{ session()->get('sucesss')}} </div>
-            @endif
-
             <div class="mb-4 row">
                 <label for="current_password" class="col-sm-3 col-form-label">Current Password</label>
                 <div class="col-sm-9">
                     <input id="current_password" name="current_password" type="password" class="form-control">
-                    <span toggle="#current_password" class="ti ti-eye toggle-password"
+                    <span toggle="#current_password" class="far fa-eye toggle-password"
                         style="float: right; margin-top:-25px; margin-right: 10px;"></span>
                 </div>
                 @error('current_password')
@@ -38,7 +34,7 @@
                 <label for="password" class="col-sm-3 col-form-label">New Password</label>
                 <div class="col-sm-9">
                     <input id="password" name="password" type="password" class="form-control" value="">
-                    <span toggle="#password" class="ti ti-eye toggle-password"
+                    <span toggle="#password" class="far fa-eye toggle-password"
                         style="float: right; margin-top:-25px; margin-right: 10px;"></span>
                 </div>
                 @error('password')
@@ -57,7 +53,7 @@
                 <div class="col-sm-9">
                     <input id="password_confirmation" name="password_confirmation" type="password" class="form-control"
                         value="">
-                    <span toggle="#password_confirmation" class="ti ti-eye toggle-password"
+                    <span toggle="#password_confirmation" class="far fa-eye toggle-password"
                         style="float: right; margin-top:-25px; margin-right: 10px;"></span>
                 </div>
                 @error('password_confirmation')

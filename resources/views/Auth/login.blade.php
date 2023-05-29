@@ -11,21 +11,21 @@
             <form method="POST" action="{{route('login.auth')}}">
                 @csrf
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Username</label>
+                    <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" name="username">
                     @error('username')
                     <div class="form-text text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Name</label>
+                    <label for="name" class="form-label">Name</label>
                     <input type="text" class="form-control" name="nama">
                     @error('nama')
                     <div class="form-text text-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                    <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" name="email">
                     @error('email')
                     <div class="form-text text-danger">{{ $message }}</div>

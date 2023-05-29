@@ -10,7 +10,8 @@
     <link href="{{ asset('css/homepage/fontawesome-all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/homepage/swiper.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/homepage/styles.css') }}" rel="stylesheet">
-	
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 	<!-- Favicon  -->
     <link rel="icon" href="{{ asset('images/homepage/favicon.png') }}">
 </head>
@@ -139,8 +140,25 @@
     <!-- end of copyright -->
     	
     <!-- Scripts -->
+    <script src="{{ asset('/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('js/homepage/bootstrap.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('js/homepage/swiper.min.js') }}"></script>
     <script src="{{ asset('js/homepage/scripts.js') }}"></script> 
+
+    @if (Session::has('notAllowed'))
+    <script>
+        toastr.options = {
+            "progressBar" : true,
+            "closeButton" : true,
+            "positionClass": "toast-bottom-right",
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+        }
+
+        toastr.error("{{ session()->get('notAllowed')}}");
+    </script>
+    @endif
 </body>
 </html>

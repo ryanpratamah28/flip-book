@@ -7,6 +7,8 @@
   <title>Modernize Free</title>
   <link rel="shortcut icon" type="image/png" href="{{ asset('/images/logos/favicon.png') }}" />
   <link rel="stylesheet" href="{{ asset('/css/dashboard/styles.min.css') }}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body>
@@ -23,20 +25,25 @@
     </div>
   </div>
 
-  @if(Session::get('error'))
-    <div class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="d-flex">
-        <div class="toast-body">
-          {{Session('error')}}
-        </div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-    </div>
-  @endif
-
   <script src="{{ asset('/libs/jquery/dist/jquery.min.js') }}"></script>
   <script src="{{ asset('/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="{{ asset('/js/homepage/login.js')}}"></script>
+
+  @if (Session::has('error'))
+  <script>
+      toastr.options = {
+          "progressBar" : true,
+          "closeButton" : true,
+          "positionClass": "toast-bottom-right",
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+      }
+
+      toastr.error("{{ session()->get('error')}}");
+  </script>
+  @endif
 </body>
 
 </html>
