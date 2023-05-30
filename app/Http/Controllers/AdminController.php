@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Bookflip;
+use App\Models\Bookflip2;
+use App\Models\Bookflip3;
+use App\Models\Bookflip4;
+use App\Models\Bookflip5;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -19,11 +25,6 @@ class AdminController extends Controller
     {
         $accounts = User::all();
         return view('Admin.account_management', compact('accounts'));
-    }
-
-    public function flipbookAdmin() 
-    {
-        return view('Admin.flipbook_admin');
     }
 
     public function login() 
@@ -103,4 +104,36 @@ class AdminController extends Controller
         User::where('id', '=', $id)->delete();
         return redirect()->back()->with('deleted', 'Account deleted successfully');
     }
+
+    // Flipbook Admin
+
+    public function flipbookAdmin() 
+    {
+        $book = Bookflip::all();
+        return view('Admin.flipbook_admin', compact('book'));
+    }
+
+    public function flipbookAdmin2() 
+    {
+        $book2 = Bookflip2::all();
+        return view('Admin.flipbook_admin2', compact('book2'));
+    }
+
+    public function flipbookAdmin3() 
+    {
+        $book3 = Bookflip3::all();
+        return view('Admin.flipbook_admin3', compact('book3'));
+    }
+
+    public function flipbookAdmin4() 
+    {
+        $book4 = Bookflip4::all();
+        return view('Admin.flipbook_admin4', compact('book4'));
+    }
+
+    public function flipbookAdmin5(){
+        $book5 = Bookflip5::all();
+        return view('Admin.flipbook_admin5', compact('book5'));
+    }
+    
 }

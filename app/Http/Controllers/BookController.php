@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Bookflip;
+use App\Models\Bookflip2;
+use App\Models\Bookflip3;
+use App\Models\Bookflip4;
+use App\Models\Bookflip5;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -12,15 +17,40 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-
+    
     public function homePage()
     {
         return view('User.homepage');
     }
 
-    public function flipbook()
+    public function flipBook()
     {
-        return view('User.flipbook');
+        $book = Bookflip::all();
+        return view('User.flipbook', compact('book'));
+    }
+
+    public function flipbook2()
+    {
+        $book = Bookflip2::all();
+        return view('User.flipbook2', compact('book'));
+    }
+
+    public function flipbook3()
+    {
+        $book = Bookflip3::all();
+        return view('User.flipbook3', compact('book'));
+    }
+
+    public function flipbook4()
+    {
+        $book = Bookflip4::all();
+        return view('User.flipbook4', compact('book'));
+    }
+
+    public function flipbook5()
+    {
+        $book = Bookflip5::all();
+        return view('User.flipbook5', compact('book'));
     }
 
     /**

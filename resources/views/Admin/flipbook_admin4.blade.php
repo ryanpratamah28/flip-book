@@ -13,13 +13,13 @@
 
 </style>
 <div class="row">
-    <div><a class="btn btn-success mb-3" href="{{ route('create') }}">Create</a></div>
+    <div><a class="btn btn-success mb-3" href="{{ route('create4') }}">Create</a></div>
     <div class="col-12 d-flex align-items-stretch">
         <div class="card w-100">
             <div class="card-body p-4">
                 <h5 class="card-title fw-semibold mb-2">Flipbook Generator</h5>
                 <div class="table-responsive">
-                    <form id="formId" action="{{ route('delete') }}" method="POST">
+                    <form id="formId" action="{{ route('delete4') }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <table class="table text-nowrap mb-0 align-middle">
@@ -46,49 +46,49 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($book as $books)
+                                @foreach($book4 as $book4s)
                                 <tr>
                                     <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">{{ $books->id }}</h6>
+                                        <h6 class="fw-semibold mb-0">{{ $book4s->id }}</h6>
                                     </td>
                                     <td class="border-bottom-0">
-                                        @if(!empty($books->subject))
+                                        @if(!empty($book4s->subject))
                                         <h6 class="fw-semibold mb-1" style="white-space: pre-wrap;">
-                                            {{ $books->subject }}</h6>
+                                            {{ $book4s->subject }}</h6>
                                         @else
                                         <h6 class="fw-semibold mb-1">--</h6>
                                         @endif
                                     </td>
                                     <td class="border-bottom-0">
-                                        @if(!empty($books->text))
-                                        <p class="mb-0 fw-normal" style="white-space: pre-wrap; text-indent:-5em; width: 250px;">
-                                            {{ $books->text }}</p>
+                                        @if(!empty($book4s->text))
+                                        <p class="mb-0 fw-normal" style="white-space: pre-wrap; width: 250px;">
+                                            {{ $book4s->text }}</p>
                                         @else
                                         <p class="mb-0 fw-normal">--</p>
                                         @endif
                                     </td>
                                     <td class="border-bottom-0">
-                                        @if(!empty($books->image))
-                                        <img src="{{ asset('storage/images/' . $books->image) }}" class="mb-0 fw-normal"
-                                            style="width: 100px;">
+                                        @if(!empty($book4s->image))
+                                        <img src="{{ asset('storage/images/' . $book4s->image) }}"
+                                            class="mb-0 fw-normal" style="width: 100px;">
                                         @else
                                         <p class="mb-0 fw-normal">--</p>
                                         @endif
                                     </td>
                                     <td class="border-bottom-0">
-                                        @if(!empty($books->link))
+                                        @if(!empty($book4s->link))
                                         <p class="mb-0 fw-normal link" style="white-space: pre-wrap; width: 250px;">
-                                            {{ $books->link }}</p>
+                                            {{ $book4s->link }}</p>
                                         @else
                                         <p class="mb-0 fw-normal">--</p>
                                         @endif
                                     </td>
                                     <td class="border-bottom-0">
                                         <div class="d-flex align-items-center gap-2">
-                                            <a href="{{ route('edit',$books->id) }}" class="ti ti-pencil fs-6"
+                                            <a href="{{ route('edit4',$book4s->id) }}" class="ti ti-pencil fs-6"
                                                 style="border: none; background-color:transparent;color:green;"></a>
                                             <span> | </span>
-                                            <input type="checkbox" name="items[]" value="{{ $books->id }}">
+                                            <input type="checkbox" name="items[]" value="{{ $book4s->id }}">
                                             <!-- <button type="submit" class="ti ti-trash fs-6" style="border: none; background-color:transparent;color:red;"></button> -->
                                         </div>
                                     </td>
